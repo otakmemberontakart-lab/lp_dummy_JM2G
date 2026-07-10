@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jalan Menuju Dua Garis — Promil Gagal karena Kista Bilateral?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#2F5D50;
+    --forest-dark:#234840;
+    --terracotta:#A8654F;
+    --gold:#C9A227;
+    --ivory:#FBF6EE;
+    --ivory-2:#F3EBDA;
+    --charcoal:#2B2B26;
+    --offwhite:#FBF6EE;
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Lora', serif;
+    color:var(--charcoal);
+    background:var(--ivory);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.eyebrow,.btn,.price{ font-family:'Poppins', sans-serif; }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+
+  .section{
+    position:relative;
+    padding:64px 24px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .section.dark{ background:var(--forest); color:var(--offwhite); }
+  .section.light{ background:var(--ivory); color:var(--charcoal); }
+  .section.tint{ background:var(--ivory-2); color:var(--charcoal); }
+  .section.terra{ background:var(--terracotta); color:var(--offwhite); }
+
+  .inner{ max-width:var(--maxw); margin:0 auto; width:100%; }
+
+  .eyebrow{
+    font-size:12px; font-weight:600; letter-spacing:3px; text-transform:uppercase;
+    color:var(--gold); margin-bottom:14px; opacity:0;
+  }
+  .section.light .eyebrow, .section.tint .eyebrow { color:var(--terracotta); }
+
+  h1{ font-size:clamp(30px,7vw,56px); font-weight:800; line-height:1.12; letter-spacing:-0.5px; }
+  h2{ font-size:clamp(24px,4.5vw,38px); font-weight:700; line-height:1.2; letter-spacing:-0.3px; }
+  .lede{ font-size:clamp(16px,2.6vw,19px); line-height:1.75; max-width:640px; margin-top:18px; }
+  .section.dark .lede, .section.terra .lede{ color:rgba(255,255,255,0.88); }
+  .section.light .lede, .section.tint .lede{ color:#4A4A40; }
+
+  p.body{ font-size:16px; line-height:1.85; margin-bottom:16px; }
+  .section.dark p.body, .section.terra p.body{ color:rgba(255,255,255,0.85); }
+  .section.light p.body, .section.tint p.body{ color:#3A3A32; }
+
+  .divider{ width:44px; height:4px; border-radius:4px; background:var(--gold); margin:22px 0; }
+
+  /* ---- reveal animation ---- */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s ease; }
+  .reveal.show{ opacity:1; transform:translateY(0); }
+  .reveal.show .eyebrow{ opacity:1; transition:opacity .8s ease .15s; }
+
+  /* ---- buttons ---- */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--gold); color:#2B2200; font-weight:700; font-size:16px;
+    padding:18px 30px; border-radius:12px; text-decoration:none; border:none;
+    cursor:pointer; transition:transform .2s ease, box-shadow .2s ease;
+    box-shadow:0 6px 20px rgba(201,162,39,0.28);
+  }
+  .btn:hover{ transform:translateY(-2px) scale(1.015); box-shadow:0 10px 28px rgba(201,162,39,0.38); }
+  .btn.small{ padding:12px 20px; font-size:14px; border-radius:9px; }
+
+  /* ================= HERO ================= */
+  .hero{
+    min-height:100vh;
+    background:linear-gradient(180deg, var(--forest) 0%, var(--forest-dark) 100%);
+    display:flex; align-items:center;
+    padding:110px 24px 64px 24px;
+  }
+  .hero .inner{
+    display:grid;
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "headline"
+      "image"
+      "subheadline"
+      "cta";
+    gap:26px;
+  }
+  .hero-headline{ grid-area:headline; }
+  .hero-imgwrap{ grid-area:image; }
+  .hero-subheadline{ grid-area:subheadline; }
+  .hero-cta{ grid-area:cta; }
+  .hero h1{ color:#fff; }
+  .hero h1 .accent{ color:var(--gold); }
+  .hero .lede{ color:rgba(255,255,255,0.92); }
+  .hero-cta-row{ display:flex; flex-wrap:wrap; align-items:center; gap:18px; }
+  .hero-note{ font-size:13px; color:rgba(255,255,255,0.65); }
+  .hero-imgwrap{
+    width:100%; border-radius:20px; overflow:hidden;
+    box-shadow:0 30px 60px rgba(0,0,0,0.35);
+    aspect-ratio:4/5; background:#1c342c;
+  }
+  .hero-imgwrap img{ width:100%; height:100%; object-fit:cover; }
+  .hero .eyebrow{ display:none; }
+
+  /* ================= PROBLEM ================= */
+  .problem .inner{ display:flex; flex-direction:column; gap:36px; }
+  .problem-imgwrap{
+    width:100%; border-radius:18px; overflow:hidden; aspect-ratio:4/5;
+    box-shadow:0 20px 44px rgba(47,93,80,0.12);
+  }
+  .problem-imgwrap img{ width:100%; height:100%; object-fit:cover; }
+  .problem h2 .hl{ color:var(--terracotta); }
+
+  /* ================= AUTHORITY ================= */
+  .authority .inner{ max-width:760px; }
+  .quote-mark{ font-size:64px; color:var(--gold); font-family:'Poppins',sans-serif; line-height:0.4; display:block; margin-bottom:18px; }
+  .authority-quote{ font-family:'Lora',serif; font-style:italic; font-size:clamp(19px,3vw,25px); line-height:1.6; color:#fff; }
+  .authority-attrib{ margin-top:26px; font-family:'Poppins',sans-serif; font-size:13px; letter-spacing:1px; text-transform:uppercase; color:var(--gold); }
+
+  /* ================= MECHANISM ================= */
+  .steps{ display:flex; flex-direction:column; gap:16px; margin-top:34px; }
+  .step{
+    background:#fff; border-radius:16px; padding:22px 24px;
+    display:flex; gap:18px; align-items:flex-start;
+    box-shadow:0 4px 18px rgba(47,93,80,0.07);
+    border-left:5px solid var(--forest);
+  }
+  .step:nth-child(2){ border-left-color:var(--terracotta); }
+  .step:nth-child(3){ border-left-color:var(--gold); }
+  .step:nth-child(4){ border-left-color:var(--forest); }
+  .step:nth-child(5){ border-left-color:var(--terracotta); }
+  .step-letter{
+    font-family:'Poppins',sans-serif; font-weight:800; font-size:20px; color:var(--forest);
+    width:44px; height:44px; min-width:44px; border-radius:50%; background:var(--ivory-2);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .step h3{ font-size:17px; font-weight:700; color:var(--forest); margin-bottom:6px; }
+  .step p{ font-size:14.5px; color:#4A4A40; line-height:1.6; }
+
+  /* ================= TIME TO RESULT ================= */
+  .ttr .inner{ max-width:720px; }
+  .ttr-quote{ font-family:'Lora',serif; font-style:italic; font-size:clamp(19px,3.2vw,26px); line-height:1.65; color:#fff; }
+  .ttr-list{ margin-top:34px; display:flex; flex-direction:column; gap:14px; }
+  .ttr-item{ display:flex; gap:14px; align-items:baseline; font-size:15px; color:rgba(255,255,255,0.9); }
+  .ttr-item .tag{ font-family:'Poppins',sans-serif; font-weight:700; font-size:12px; letter-spacing:1px; text-transform:uppercase; color:var(--gold); min-width:110px; }
+
+  /* ================= WHAT'S INCLUDED ================= */
+  .included-grid{ display:grid; grid-template-columns:1fr; gap:20px; margin-top:36px; }
+  .included-card{
+    background:#fff; border-radius:18px; padding:26px; box-shadow:0 6px 22px rgba(47,93,80,0.08);
+  }
+  .included-card .tag2{
+    display:inline-block; font-family:'Poppins',sans-serif; font-size:11px; font-weight:700;
+    letter-spacing:1.5px; text-transform:uppercase; color:var(--terracotta); margin-bottom:10px;
+  }
+  .included-card h3{ font-size:19px; font-weight:700; color:var(--forest); margin-bottom:10px; }
+  .included-card p{ font-size:14.5px; color:#4A4A40; line-height:1.65; }
+  .mockup-wrap{
+    margin-top:40px; border-radius:20px; overflow:hidden;
+    box-shadow:0 24px 50px rgba(47,93,80,0.15);
+  }
+  .mockup-wrap img{ width:100%; display:block; }
+
+  /* ================= HONESTY ================= */
+  .honesty .inner{ max-width:720px; }
+  .honesty-box{
+    border:1.5px solid rgba(255,255,255,0.25); border-radius:18px; padding:30px;
+    background:rgba(255,255,255,0.04); margin-top:10px;
+  }
+
+  /* ================= PRICE ================= */
+  .price-wrap{
+    text-align:center; margin-top:8px;
+  }
+  .price-old{
+    font-family:'Poppins',sans-serif; font-size:20px; color:#8a8378; text-decoration:line-through;
+    display:block; margin-bottom:4px;
+  }
+  .price-new{
+    font-family:'Poppins',sans-serif; font-weight:800; font-size:clamp(48px,10vw,80px);
+    color:var(--forest); line-height:1; transform-origin:center;
+  }
+  .price-sub{ font-size:15px; color:#5B5B50; margin-top:10px; }
+  .price-cta-wrap{ display:flex; justify-content:center; margin-top:30px; }
+  .checks{
+    max-width:520px; margin:40px auto 0 auto; display:grid; grid-template-columns:1fr; gap:12px;
+  }
+  .check-item{ display:flex; gap:10px; align-items:flex-start; font-size:14.5px; color:#3A3A32; }
+  .check-item .dot{
+    min-width:20px; height:20px; border-radius:50%; background:var(--forest); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:12px; margin-top:2px;
+  }
+
+  /* ================= FINAL CTA ================= */
+  .final .inner{ max-width:640px; text-align:left; }
+  .final-cta-wrap{ margin-top:32px; }
+
+  /* ================= STICKY CTA ================= */
+  .sticky-cta{
+    position:fixed; left:0; right:0; bottom:0; z-index:60;
+    background:var(--forest-dark);
+    box-shadow:0 -8px 24px rgba(0,0,0,0.25);
+    padding:14px 18px;
+    transform:translateY(120%);
+    transition:transform .35s ease;
+  }
+  .sticky-cta.show{ transform:translateY(0); }
+  .sticky-inner{
+    max-width:var(--maxw); margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .sticky-price{ color:#fff; font-family:'Poppins',sans-serif; }
+  .sticky-price .old{ font-size:12px; color:rgba(255,255,255,0.55); text-decoration:line-through; margin-right:8px; }
+  .sticky-price .new{ font-size:18px; font-weight:800; color:var(--gold); }
+  .sticky-price .new-label{ font-size:11px; color:rgba(255,255,255,0.7); display:block; }
+
+  /* ================= FOOTER ================= */
+  .foot{ padding:36px 24px 110px 24px; text-align:center; }
+  .foot p{ font-size:12.5px; color:#8a8378; }
+
+  /* ============ DESKTOP ============ */
+  @media (min-width: 900px){
+    .section{ min-height:100vh; padding:64px 72px; }
+    .hero{ padding:64px 72px; }
+    .hero .inner{
+      grid-template-columns:1fr 42%;
+      grid-template-areas:
+        "headline image"
+        "subheadline image"
+        "cta image";
+      align-items:center;
+      column-gap:70px;
+      row-gap:22px;
+    }
+    .hero .eyebrow{ display:block; }
+    .hero-imgwrap{ max-width:460px; }
+
+    .problem .inner{ flex-direction:row-reverse; align-items:center; gap:70px; }
+    .problem-copy{ flex:1; }
+    .problem-imgwrap{ flex:0 0 40%; max-width:420px; }
+
+    .steps{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .step:nth-child(1){ grid-column:1 / span 2; }
+
+    .included-grid{ grid-template-columns:repeat(3,1fr); }
+    .mockup-wrap{ max-width:760px; margin-left:auto; margin-right:auto; }
+
+    .checks{ grid-template-columns:1fr 1fr; }
+
+    .sticky-cta{ padding:16px 32px; }
+  }
+
+  @media (min-width: 640px){
+    .checks{ grid-template-columns:1fr 1fr; }
+  }
+
+  /* price pop animation */
+  @keyframes priceIn{ from{ transform:scale(0.85); opacity:0; } to{ transform:scale(1); opacity:1; } }
+  .price-new.pop{ animation:priceIn .55s cubic-bezier(.2,.9,.3,1.3); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+    .sticky-cta{ transition:none; }
+    .btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO / ABOVE THE FOLD ============ -->
+<section class="section hero" id="hero">
+  <div class="inner">
+    <div class="hero-headline reveal">
+      <div class="eyebrow">Panduan 90 Hari · Format PDF</div>
+      <h1>Promil Gagal karena <span class="accent">Kista Bilateral</span>?</h1>
+    </div>
+    <div class="hero-imgwrap reveal">
+      <img src="https://drive.google.com/thumbnail?id=1pP25XBdtsSkNMsuepFDX3NgSYy8Ojyu3&sz=w1000" alt="Perempuan tenang membaca catatan di dekat jendela pagi hari">
+    </div>
+    <div class="hero-subheadline reveal">
+      <p class="lede">Dalam 90 hari, punya protokol jelas bulan per bulan, khusus buat kista besar dan bilateral, bukan panduan promil umum yang isinya "makan sehat dan sabar aja dulu." Cukup 5–10 menit sehari, dari rumah, tanpa kelas, tanpa jadwal ketat.</p>
+    </div>
+    <div class="hero-cta reveal">
+      <div class="hero-cta-row">
+        <a href="#harga" class="btn">Ya, Aku Mau Mulai 90 Hari Ini</a>
+      </div>
+      <div class="hero-note" style="margin-top:14px;">Rp127.000 sekali bayar · Langsung bisa dibuka di HP</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="section light problem" id="problem">
+  <div class="inner">
+    <div class="problem-copy reveal">
+      <div class="eyebrow">Kalau Ini Kerasa Familiar</div>
+      <h2>Dua Kata yang Bikin Kamu Ngerasa <span class="hl">Udah Mentok</span></h2>
+      <p class="body" style="margin-top:22px;">Bilateral. Dokter bilang kata itu, dan rasanya kayak pintu ditutup dari dua sisi sekaligus. Ditambah lagi udah promil bertahun-tahun, udah ganti pola makan, udah beli suplemen, udah download tracker, dan tetap aja tespeknya nggak berubah. Setiap bulan yang lewat kerasa kayak bukti tambahan kalau kamu emang nggak akan berhasil.</p>
+      <p class="body">Padahal bilateral bukan berarti peluangmu nol. Dan bulan-bulan yang udah lewat itu bukan bukti kegagalanmu, itu cuma bulan-bulan sebelum kamu punya protokol yang jelas.</p>
+    </div>
+    <div class="problem-imgwrap reveal">
+      <img src="https://drive.google.com/thumbnail?id=1szo555aFZU_ZwMVIXEv-xfgBTkLQkykl&sz=w1000" alt="Perempuan lelah duduk di tepi kasur">
+    </div>
+  </div>
+</section>
+
+<!-- ============ AUTHORITY ============ -->
+<section class="section dark authority" id="authority">
+  <div class="inner reveal">
+    <span class="quote-mark">&ldquo;</span>
+    <p class="authority-quote">Ditulis sama perempuan yang kistanya bilateral 6cm, sempat disaranin dokter buat angkat ovarium, dan butuh 4 tahun sampai akhirnya hamil alami di usia 34. Bukan artikel kesehatan umum yang ditulis orang yang nggak pernah ngalamin. Ini protokol yang memang disusun khusus buat kondisi kista besar dan bilateral, kondisi yang biasanya udah dicap "kasus berat" sama kebanyakan panduan promil lain.</p>
+    <div class="authority-attrib">Dari Penulis Jalan Menuju Dua Garis</div>
+  </div>
+</section>
+
+<!-- ============ MECHANISM ============ -->
+<section class="section tint mechanism" id="mechanism">
+  <div class="inner reveal">
+    <div class="eyebrow">Bukan Kumpulan Tips Random</div>
+    <h2>Metode J.A.L.A.N., Lima Tahap yang Berurutan</h2>
+    <p class="lede">Bukan daftar saran acak yang bikin kamu bingung mulai dari mana. Lima huruf, lima bab, satu jalan yang punya urutan.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-letter">J</div>
+        <div><h3>Jelas</h3><p>Paham kondisi kista bilateralmu dalam bahasa manusia, bukan istilah medis yang bikin makin cemas.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-letter">A</div>
+        <div><h3>Anti-Inflamasi</h3><p>Protokol makan yang urut per minggu, bukan daftar pantangan yang bikin kewalahan.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-letter">L</div>
+        <div><h3>Lacak</h3><p>Cara baca pola nyeri dan siklusmu sendiri, cukup 5 menit sehari.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-letter">A</div>
+        <div><h3>Ambil Keputusan</h3><p>Kerangka jelas kapan jalur alami masih masuk akal buat kondisi bilateralmu, kapan harus segera ke dokter.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-letter">N</div>
+        <div><h3>Navigasi</h3><p>Cara komunikasi sama dokter biar konsultasi nggak berakhir bingung lagi.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIME TO RESULT ============ -->
+<section class="section terra ttr" id="ttr">
+  <div class="inner reveal">
+    <div class="eyebrow" style="color:#fff;">Bukan Nunggu Sampai Akhir</div>
+    <h2 style="color:#fff;">Hasil Pertamamu Bukan Garis Dua</h2>
+    <p class="ttr-quote" style="margin-top:22px;">Hasil pertama dari panduan ini bukan tespek positif. Hasil pertamanya adalah malam ini, waktu kamu buat pertama kalinya tidur sambil tahu persis apa yang bakal kamu lakuin besok pagi buat kista bilateralmu.</p>
+    <div class="ttr-list">
+      <div class="ttr-item"><span class="tag">Malam ini</span> Tahu persis langkah pertama, bukan lagi menebak-nebak.</div>
+      <div class="ttr-item"><span class="tag">Minggu 1</span> Bisa jelasin kondisimu sendiri pakai kalimat yang tepat.</div>
+      <div class="ttr-item"><span class="tag">Bulan 1</span> Punya peta pola nyerimu sendiri yang belum pernah kamu lihat sebelumnya.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHAT'S INCLUDED ============ -->
+<section class="section light included" id="included">
+  <div class="inner reveal">
+    <div class="eyebrow">Semua yang Kamu Terima</div>
+    <h2>Apa Aja yang Kamu Dapat</h2>
+    <p class="lede">Satu ebook utama plus dua bonus, semuanya PDF, langsung bisa dibuka di HP kamu.</p>
+    <div class="included-grid">
+      <div class="included-card">
+        <span class="tag2">Ebook Utama</span>
+        <h3>Jalan Menuju Dua Garis</h3>
+        <p>Enam bab lengkap sama metode J.A.L.A.N., dari paham kondisi kista bilateral sampai cara ngomong ke dokter tanpa bikin konsultasi jadi canggung.</p>
+      </div>
+      <div class="included-card">
+        <span class="tag2">Bonus 1</span>
+        <h3>Perangkat 90 Hari</h3>
+        <p>Checklist bulanan siap centang plus tracker harian buat siklus dan pola nyerimu. Tinggal isi, nggak perlu bikin sistem sendiri dari nol.</p>
+      </div>
+      <div class="included-card">
+        <span class="tag2">Bonus 2</span>
+        <h3>Bekal Masuk Ruang Dokter</h3>
+        <p>Kartu tanda bahaya siap cetak, cara baca hasil USG termasuk baris ukuran dan sisi kistamu, sampai naskah percakapan biar nggak kedengaran nolak saran dokter.</p>
+      </div>
+    </div>
+    <div class="mockup-wrap">
+      <img src="https://drive.google.com/thumbnail?id=1NaFbzFuybsvZbpWtL-KqP07NZhuBB89h&sz=w1400" alt="Mockup tiga PDF: ebook utama dan dua bonus">
+    </div>
+  </div>
+</section>
+
+<!-- ============ HONESTY ============ -->
+<section class="section dark honesty" id="honesty">
+  <div class="inner reveal">
+    <div class="eyebrow">Sebelum Kamu Lanjut</div>
+    <h2 style="color:#fff;">Ini Bukan Janji Kamu Bakal Hamil</h2>
+    <div class="honesty-box">
+      <p class="body" style="margin-bottom:0;">Panduan ini nggak janjiin kamu bakal hamil, dan nggak janjiin kista bilateralmu bakal mengecil atau hilang. Ini juga bukan pengganti dokter kandunganmu, justru sebaliknya, di dalamnya ada bab dan kartu khusus yang bakal dorong kamu lebih sering konsultasi, dengan pertanyaan yang lebih tajam soal kondisi bilateralmu. Yang bisa dikasih cuma protokol yang jelas, cara baca tubuhmu sendiri, dan kerangka buat ambil keputusan tanpa rasa bersalah, apa pun keputusan itu nantinya.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICE ============ -->
+<section class="section light price" id="harga">
+  <div class="inner reveal">
+    <div style="text-align:center;">
+      <div class="eyebrow" style="display:block;">Harga Satu Kali, Bukan Langganan</div>
+      <div class="price-wrap">
+        <span class="price-old">Rp599.000</span>
+        <span class="price-new" id="priceNum">Rp127.000</span>
+        <p class="price-sub">Dibayar sekali aja. Satu kali konsultasi ke klinik fertilitas soal kista bilateral biasanya udah di atas Rp500.000.</p>
+      </div>
+      <div class="price-cta-wrap">
+        <a href="#" class="btn">Ya, Aku Mau Mulai 90 Hari Ini</a>
+      </div>
+    </div>
+    <div class="checks">
+      <div class="check-item"><span class="dot">✓</span> Akses seumur hidup, buka kapan aja</div>
+      <div class="check-item"><span class="dot">✓</span> Tanpa biaya bulanan, bayar sekali langsung selesai</div>
+      <div class="check-item"><span class="dot">✓</span> Pembayaran aman</div>
+      <div class="check-item"><span class="dot">✓</span> Format PDF, langsung kebuka di HP, tablet, atau laptop</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="section dark final" id="final">
+  <div class="inner reveal">
+    <div class="eyebrow">Mulai Malam Ini Juga</div>
+    <h2 style="color:#fff;">Nggak Perlu Nunggu Waktu yang "Pas"</h2>
+    <p class="lede">Begitu selesai bayar, link download langsung masuk. Sepuluh menit pertama kamu udah bisa mulai: buka kartu tanda bahaya, isi baris pertama di tracker, dan tentuin tanggal 90 hari dari sekarang. Nggak perlu nunggu Senin, nggak perlu nunggu siklus baru mulai.</p>
+    <div class="final-cta-wrap">
+      <a href="#harga" class="btn">Ya, Aku Mau Mulai 90 Hari Ini</a>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  <p>Jalan Menuju Dua Garis &middot; Panduan digital format PDF &middot; Bukan pengganti konsultasi medis</p>
+</div>
+
+<!-- ============ STICKY CTA ============ -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-inner">
+    <div class="sticky-price">
+      <span class="old">Rp599rb</span><span class="new">Rp127rb</span>
+      <span class="new-label">Sekali bayar</span>
+    </div>
+    <a href="#harga" class="btn small">Mulai 90 Hari Ini</a>
+  </div>
+</div>
+
+<script>
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('show');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el=>revealObserver.observe(el));
+
+  // Sticky CTA appears after hero
+  const hero = document.getElementById('hero');
+  const stickyCta = document.getElementById('stickyCta');
+  const heroObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        stickyCta.classList.remove('show');
+      } else {
+        stickyCta.classList.add('show');
+      }
+    });
+  }, { threshold: 0 });
+  heroObserver.observe(hero);
+
+  // Price pop animation
+  const priceEl = document.getElementById('priceNum');
+  const priceSection = document.getElementById('harga');
+  const priceObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        priceEl.classList.add('pop');
+        priceObserver.unobserve(priceSection);
+      }
+    });
+  }, { threshold: 0.4 });
+  priceObserver.observe(priceSection);
+</script>
+
+</body>
+</html>
